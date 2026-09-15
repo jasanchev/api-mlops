@@ -1,0 +1,7 @@
+# Entornos virtuales
+venv/
+entorno_mlops/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
