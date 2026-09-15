@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simulador-estocastico
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gemelo-digital
+  template:
+    metadata:
+      labels:
+        app: gemelo-digital
+    spec:
+      containers:
+      - name: api-mlops
+        image: ghcr.io/jasanchev/api-mlops/mi-api-mlops:latest
+        ports:
+        - containerPort: 8000
