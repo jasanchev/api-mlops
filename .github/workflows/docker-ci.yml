@@ -24,11 +24,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Construir la imagen de Docker
-      run: |
-        REPO=\((echo "\){{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-        docker build -t ghcr.io/$REPO/mi-api-mlops:latest .
+      run: docker build -t ghcr.io/${{ github.repository }}/mi-api-mlops:latest .
 
     - name: Subir la imagen al Registry
-      run: |
-        REPO=\((echo "\){{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-        docker push ghcr.io/$REPO/mi-api-mlops:latest
+      run: docker push ghcr.io/${{ github.repository }}/mi-api-mlops:latest
