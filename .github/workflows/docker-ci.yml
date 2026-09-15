@@ -1,16 +1,33 @@
-name: Integracion Continua Docker
+name: Entrega Continua Docker (CI/CD)
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  construir-y-probar:
+  construir-y-publicar:
     runs-on: ubuntu-latest
     
+    # 1. Le damos permiso al servidor temporal para escribir paquetes
+    permissions:
+      contents: read
+      packages: write
+
     steps:
     - name: Descargar el codigo del repositorio
       uses: actions/checkout@v4
 
+    - name: Iniciar sesion en GitHub Container Registry (GHCR)
+      # Usamos el token automático de GitHub para autenticarnos
+      run: echo "\({{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u\){{ github.actor }} --password-stdin
+
     - name: Construir la imagen de Docker
-      run: docker build -t mi-api-mlops .
+      # Etiquetamos la imagen con el formato requerido por GitHub: ghcr.io/usuario/repo/nombre:version
+      run: |
+        REPO=\((echo "\){{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+        docker build -t ghcr.io/$REPO/mi-api-mlops:latest .
+
+    - name: Subir la imagen al Registry
+      run: |
+        REPO=\((echo "\){{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+        docker push ghcr.io/$REPO/mi-api-mlops:latest
