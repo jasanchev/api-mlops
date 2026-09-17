@@ -15,8 +15,8 @@ env:
   GKE_CLUSTER: jupyterhub-cluster             # El nombre de tu clúster de GKE
   
   GKE_ZONE: us-central1                       # La región de tu clúster
-  DEPLOYMENT_NAME: api-simulacion             # El nombre de tu deployment en Kubernetes
-  NAMESPACE: simulador-estocastico            # El namespace donde desplegamos la API
+  DEPLOYMENT_NAME: simulador-estocastico      # El nombre de tu deployment en Kubernetes
+  NAMESPACE: simulacion-mlops                 # El namespace donde desplegamos la API
   IMAGE: api-mlops                            # El nombre que le daremos a la imagen Docker
 
 jobs:
