@@ -16,7 +16,7 @@ env:
   
   GKE_ZONE: us-central1                       # La región de tu clúster
   DEPLOYMENT_NAME: api-simulacion             # El nombre de tu deployment en Kubernetes
-  NAMESPACE: simulacion-mlops                 # El namespace donde desplegamos la API
+  NAMESPACE: simulador-estocastico            # El namespace donde desplegamos la API
   IMAGE: api-mlops                            # El nombre que le daremos a la imagen Docker
 
 jobs:
